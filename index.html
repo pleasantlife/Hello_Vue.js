@@ -42,6 +42,20 @@
         <input v-model="message">
     </div>
 
+    <ol>
+        <todo-item></todo-item>
+    </ol>
+
+    <div id = "app-7">
+        <ol>
+            <todo-item
+            v-for='item in grocerylist'
+            v-bind:todo="item"
+            v-bind:key='item.id'>
+        </todo-item>
+        </ol>
+    </div>
+
 <script>
 var date = new Date()
 var month = date.getMonth()+1
@@ -94,6 +108,26 @@ var app6 = new Vue({
     el: '#app-6',
     data : {
         message: '아무거나 입력해 보세요!'
+    }
+})
+
+Vue.component('todo-item', {
+    template:'<li>할일 항목 하나입니다.</li>'
+})
+
+Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+})
+
+var app7 = new Vue({
+    el: '#app-7',
+    data : {
+        grocerylist: [
+            { id: 0, text: 'Vegetables' },
+            { id: 1, text: 'Cheese'},
+            { id: 2, text: 'Whatever else humans are supposed to eat'}
+        ]
     }
 })
 </script>
