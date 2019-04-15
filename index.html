@@ -61,6 +61,10 @@
         <button v-on:click="foo = 'baz'">Change it</button>
     </div>
 
+    <div id = "example">
+
+    </div>
+
 <script>
 var date = new Date()
 var month = date.getMonth()+1
@@ -138,6 +142,7 @@ var app7 = new Vue({
 
 var data = { a: 1 }
 var vm = new Vue({
+    el: '#example',
     data: data
 })
 vm.a === data.a
@@ -159,6 +164,15 @@ Object.freeze(obj)
 new Vue({
     el: '#app-8',
     data: obj
+})
+
+vm.$data === data
+if(vm.$el === document.getElementById('example')){
+    console.log(vm.$el === document.getElementById('example'))
+    app7.data.grocerylist.add({id: 3, text: 'test'})
+}
+vm.$watch('a', function (newVal, oldVal){
+    console.log(oldVal)
 })
 
 </script>
