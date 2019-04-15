@@ -8,3 +8,8 @@
  - 하지만 Component 간 통신의 기본 골격은 React 의 1 Way Data Flow (부모 -> 자식) 와 유사
  - 다른 Front-End FW (Angular, React) 와 비교했을 때 훨씬 가볍고 빠름.
  - 간단한 Vue 를 적용하는데 있어서도 러닝커브가 낮고, 쉽게 접근 가능
+
+
+## 마크다운 라이프사이클
+ - 마크다운 라이프사이클
+   ![라이프사이클 도식](https://kr.vuejs.org/images/lifecycle.png)
