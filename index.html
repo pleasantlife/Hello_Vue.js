@@ -65,14 +65,27 @@
 
     </div>
 
+    <div id = "app-9">
+        <span>메세지 : {{ msg }}</span>
+        <span v-once>변경없음 : {{ msg }}</span>
+    </div>
+
+    <div id = "rawhtml">
+        <p>Using mustaches: {{ rawHtml }}</p>
+        <p>Using v-html directive: <span style="color:red" v-html="rawHtml">This should be red.</span></p>
+    </div>
+
 <script>
 var date = new Date()
 var month = date.getMonth()+1
-var day = date.getDay()
+var day = date.getDate()
+var dayOfWeek = date.getDay
+
+
 var app = new Vue({
 el: '#app',
 data : {
-    message : '안녕하세요 Vue! 오늘은 '+ month +'월 '+ day + '일 입니다.'
+    message : '안녕하세요 Vue! 오늘은 '+ month +'월 '+ day + '일입니다.'
 }
 })
 
@@ -169,10 +182,17 @@ new Vue({
 vm.$data === data
 if(vm.$el === document.getElementById('example')){
     console.log(vm.$el === document.getElementById('example'))
-    app7.data.grocerylist.add({id: 3, text: 'test'})
+
 }
 vm.$watch('a', function (newVal, oldVal){
     console.log(oldVal)
+})
+
+var rawHtml = new Vue({
+    el: '#rawHtml',
+    data: {
+        rawHtml: 'This should be red.'
+    }
 })
 
 </script>
