@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="main.js"></script>
+        <script src="https://unpkg.com/vue"></script>
+    </head>
+    <body>
+        <div id="component">
+            <h3>Component example</h3>
+            <ol>
+                <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+            </todo-item>
+            </ol>
+        </div>
+
+        <div id="watch">
+            <h3>Vue.js Watch!</h3>
+            <h5>Count : {{ test }}</h5>
+            <button v-on:click="test +=1">Add +1</button>
+
+        </div>
+
+        <div id="computed">
+            <h5>Computed: {{ test }}</h5>
+            <button v-on:click="test +=1">Add +1</button>
+        </div>
+
+        <script>
+            Vue.component('todo-item', {
+                props: ['todo'],
+                template: '<li>{{todo.text}}</li>'
+            })
+
+            var component = new Vue({
+                el: '#component',
+                data: {
+                    groceryList: [
+                        { id: 0, text: '고추장'},
+                        { id: 1, text: '고수'},
+                        { id: 2, text: '오이'},
+                        { id: 3, text: '할라피뇨'}                        
+                    ]
+                }
+            })
+
+            var count = { test: 0 };
+            var compute = { test : 1 };
+
+            var watch = new Vue({
+                el : '#watch',
+                data : count,
+                created: function () {
+                    console.log('test is: ' + this.test)
+                }
+            })
+
+            watch.$watch('test', function(newVal, oldVal){
+                if(newVal == 10){
+                    alert('10회 누름!')
+                }
+            })
+
+            var computed = new Vue({
+                el : '#computed',
+                data : compute,
+                computed: {
+                    hello : function(){                    
+                    return test+1
+                }
+            }
+        })                  
+        </script>
+    </body>
+</html>
