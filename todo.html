@@ -4,8 +4,28 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="main.js"></script>
+        <style>
+        .demo {
+            width : 100px;
+            height : 100px;
+            background-color:grey;
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+        </style>
         <script src="https://unpkg.com/vue"></script>
     </head>
     <body>
@@ -31,6 +51,50 @@
             <h5>Computed: {{ test }}</h5>
             <button v-on:click="test +=1">Add +1</button>
         </div>
+
+        <div id="app">
+            <div class="demo"
+            @click="attachRed = !attachRed"
+            :class="{red: attachRed, green: !attachRed}">1</div>
+
+            <div 
+            class="demo"
+            :class="color">2</div>
+
+            <div class="demo"
+            class="divClasses">3</div>
+        </div>
+
+        <div>
+            2번 상자의 색: <input type="text" v-model="color">
+        </div>
+
+        <div id="class">
+            <!-- click 시 attachRed true/false 변경 -->
+            <!-- :class로 object를 바인딩-->
+            <div 
+              class="demo"
+              @click="attachRed = !attachRed" 
+              :class="{red: attachRed, green: !attachRed}"
+              class="demo"
+            >1</div>
+            
+            <div 
+              class="demo"
+              :class="color"
+            >2</div>
+            
+            <div 
+              class="demo"
+              :class="divClasses"
+            >3</div>
+            
+            
+            
+            <div>
+              2번 상자의 색: <input type="text" v-model="color">  
+            </div>
+          </div>
 
         <script>
             Vue.component('todo-item', {
@@ -75,7 +139,23 @@
                     return test+1
                 }
             }
-        })                  
+        })
+
+        new Vue({
+            el: '#class',
+            data: {
+                attachRed: false,
+                color: 'green'
+            },
+            computed: {
+                divClasses: function() {
+                    return {
+                        red: this.attachRed,
+                        green : !this.attachRed
+                    }
+                }
+            }
+        })  
         </script>
     </body>
 </html>
