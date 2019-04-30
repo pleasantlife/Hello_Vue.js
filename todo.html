@@ -27,6 +27,7 @@
         }
         </style>
         <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
         <div id="component">
@@ -52,8 +53,9 @@
             <button v-on:click="test +=1">Add +1</button>
         </div>
 
-        <div id="app">
-            <div class="demo"
+        <div id="class">
+            <div 
+            class="demo"
             @click="attachRed = !attachRed"
             :class="{red: attachRed, green: !attachRed}">1</div>
 
@@ -62,39 +64,19 @@
             :class="color">2</div>
 
             <div class="demo"
-            class="divClasses">3</div>
-        </div>
+            :class="divClasses">3</div>
+    
 
         <div>
             2번 상자의 색: <input type="text" v-model="color">
+            </div>
         </div>
 
-        <div id="class">
-            <!-- click 시 attachRed true/false 변경 -->
-            <!-- :class로 object를 바인딩-->
-            <div 
-              class="demo"
-              @click="attachRed = !attachRed" 
-              :class="{red: attachRed, green: !attachRed}"
-              class="demo"
-            >1</div>
-            
-            <div 
-              class="demo"
-              :class="color"
-            >2</div>
-            
-            <div 
-              class="demo"
-              :class="divClasses"
-            >3</div>
-            
-            
-            
-            <div>
-              2번 상자의 색: <input type="text" v-model="color">  
-            </div>
-          </div>
+        <div id = "httptest">
+            <button v-on:click="get">불러오기</button>
+            <h3>Title : {{ title }}</h3>
+        </div>
+
 
         <script>
             Vue.component('todo-item', {
@@ -149,13 +131,52 @@
             },
             computed: {
                 divClasses: function() {
+                    console.log("attachRed", this.attachRed)
+                    console.log("color", this.color)
                     return {
                         red: this.attachRed,
                         green : !this.attachRed
                     }
                 }
             }
+        })
+
+       var titletxt = { title : 'waiting' };
+
+       var changetitle =  new Vue({
+            el: '#httptest',
+            data : titletxt,
+            methods: {
+                get: function() {
+                    axios.get('http://jsonplaceholder.typicode.com/posts')
+                .then(function(response){
+                    console.log("test", response)
+                    if(response.status == 200){
+                        console.log("200", response.data[0].title)
+                        this.title = response.data[0].title
+                        console.log("title: ", this.title)
+                        //change
+                    }
+                })
+            }
+        }
+        })
+
+        changetitle.$watch('test', function(title){
+            console.log('watch', title)
+        })
+
+/*
+        var change = new Vue({
+            el: '#httptest',
+            data: titletxt,
+            computed: {
+                changetitle: function() {
+                    return titletxt.title
+                }
+            }
         })  
+        */
         </script>
     </body>
 </html>
