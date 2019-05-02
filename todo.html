@@ -25,6 +25,10 @@
         .blue {
             background-color: blue;
         }
+
+        .httptest {
+            background-color: #ffffff;
+        }
         </style>
         <script src="https://unpkg.com/vue"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -73,13 +77,16 @@
         </div>
 
         <div id = "httptest">
-            <button v-on:click="get">불러오기</button>
-            <h3>Title : {{ title }}</h3>
+            <button v-on:click="get">데이터 불러오기</button>
+        </div>
+
+        <div id = "httptitle">
+            Title : {{ title }}
         </div>
 
 
         <script>
-            Vue.component('todo-item', {
+            var vue = Vue.component('todo-item', {
                 props: ['todo'],
                 template: '<li>{{todo.text}}</li>'
             })
@@ -141,7 +148,7 @@
             }
         })
 
-       var titletxt = { title : 'waiting' };
+       var titletxt = { title : 'waiting...' };
 
        var changetitle =  new Vue({
             el: '#httptest',
@@ -152,10 +159,11 @@
                 .then(function(response){
                     console.log("test", response)
                     if(response.status == 200){
-                        console.log("200", response.data[0].title)
-                        this.title = response.data[0].title
+                        console.log("200", response.data[2].title)
+                        this.title = response.data[2].title
                         console.log("title: ", this.title)
                         //change
+                        titletxt.title = this.title
                     }
                 })
             }
@@ -164,6 +172,11 @@
 
         changetitle.$watch('test', function(title){
             console.log('watch', title)
+        })
+
+        var change = new Vue({
+            el: '#httptitle',
+            data : titletxt
         })
 
 /*
