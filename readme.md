@@ -10,6 +10,9 @@
  - 간단한 Vue 를 적용하는데 있어서도 러닝커브가 낮고, 쉽게 접근 가능
 
 
-## 마크다운 라이프사이클
- - 마크다운 라이프사이클
+## Vue.js 라이프사이클
+ - 라이프사이클
    ![라이프사이클 도식](https://kr.vuejs.org/images/lifecycle.png)
+
+## 참고자료
+ - Toast Meetup! : [자바스크립트 프레임워크 소개 3 - Vue.js](https://meetup.toast.com/posts/99)
