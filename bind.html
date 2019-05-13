@@ -48,6 +48,18 @@
     <div>
         2번 상자의 색: <input type="text" v-model="color">
     </div>
+
+    <h1 v-if="Math.random() > 0.5">Yes</h1>
+    <h1 v-else>No</h1>
+
+    <template v-if="Math.random() > 0.5">
+        <h1>Title</h1>
+        <p>문단 1</p>
+        <p>문단 2</p>
+    </template>
+    <template v-else>
+        <h1>Title</h1>
+    </template>
 </div>
 <script>
         new Vue({
