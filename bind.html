@@ -60,8 +60,42 @@
     <template v-else>
         <h1>Title</h1>
     </template>
+
+    <ul id='example-1'>
+        <li v-for='item in items'>
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <ul id="example-2">
+        <li v-for='item in items'>
+            {{ parentMessage }} - {{ item.message }}
+        </li>
+    </ul>
 </div>
 <script>
+
+    var example1 = new Vue({
+        el: '#example-1',
+        data : {
+            items : [
+                { message: 'foo'},
+                { message: 'bar'}
+            ]
+        }
+    })
+
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            parentMessage: 'hello',
+            items : [
+                { message : 'foos' },
+                { message : 'barz' }
+            ]
+        }
+    })
+
         new Vue({
             el:'#app',
             data: {
