@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,8 +5,39 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">        
     <script src="https://unpkg.com/vue"></script>
+    <style>
+        #header {
+            background-color:gray;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin-top:0px;
+            margin-right:0px;
+            margin-bottom:0px;
+            margin-left:0px;
+            padding: 0;
+            float: left;
+            text-align: center;
+            vertical-align: baseline;
+
+        }
+        #header-title {
+
+            color: #000000;
+
+        }
+    </style>
 </head>
 <body>
+
+    <div id="header">
+        <a id="header-title">안녕하세요!</a>
+
+    </div>
+
     <ul id="list-1">
         <li v-for="item in items">
             {{ item.message}}
@@ -30,6 +60,15 @@
             {{key}} : {{value}}
         </li>
     </ul>
+
+    <div id="v-for-object2">
+
+    <div v-for="(value, key, index) in object">
+        {{ index+1 }}. {{ key }} : {{ value }}
+    </div>
+    </div>
+
+    
 
 
 
@@ -62,6 +101,17 @@ new Vue({
             firstName : 'John',
             lastName: 'Doe',
             age: 30
+        }
+    }
+})
+
+var vforlist = new Vue({
+    el: '#v-for-object2',
+    data: {
+        object: {
+            ModelName : 'Grandeur',
+            Manufacture : 'Hyundai',
+            Price : '40,000,000 Won'
         }
     }
 })
