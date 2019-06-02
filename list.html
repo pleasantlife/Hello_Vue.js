@@ -68,6 +68,10 @@
     </div>
     </div>
 
+    <div id="v-filter" v-for="(value, key, index) in object">
+        {{ index+1}}. {{key}} : {{value}}
+    </div>
+
     
 
 
@@ -115,6 +119,11 @@ var vforlist = new Vue({
         }
     }
 })
+
+list1.items.push({ message : 'Bar'})
+list2.items.push({ message : 'Barrrr!'})
+list2.items.reverse()
+
 </script>
 </body>
 </html>
