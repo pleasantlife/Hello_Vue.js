@@ -123,6 +123,12 @@ var vforlist = new Vue({
 list1.items.push({ message : 'Bar'})
 list2.items.push({ message : 'Barrrr!'})
 list2.items.reverse()
+var hello = list2.items.reverse()
+
+var vforfilter = new Vue({
+    el: '#v-filter',
+    data: { vforlist }
+})
 
 </script>
 </body>
